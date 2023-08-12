@@ -8608,7 +8608,7 @@ if (typeof __webpack_require__ !== 'undefined') {
   useRequireEnsure = true;
 }
 if (typeof requirejs !== 'undefined' && requirejs.toUrl) {
-  workerSrc = requirejs.toUrl('pdfjs-dist/build/pdf.worker.js');
+  workerSrc = requirejs.toUrl('pdfjs-dist/build/pdf_worker.js');
 }
 var dynamicLoaderSupported = typeof requirejs !== 'undefined' && requirejs.load;
 var fakeWorkerFilesLoader = useRequireEnsure ? (function (callback) {
@@ -8617,7 +8617,7 @@ var fakeWorkerFilesLoader = useRequireEnsure ? (function (callback) {
     callback(worker.WorkerMessageHandler);
   });
 }) : dynamicLoaderSupported ? (function (callback) {
-  requirejs(['pdfjs-dist/build/pdf.worker'], function (worker) {
+  requirejs(['pdfjs-dist/build/pdf_worker'], function (worker) {
     callback(worker.WorkerMessageHandler);
   });
 }) : null;
@@ -9584,7 +9584,7 @@ var PDFWorker = (function PDFWorkerClosure() {
       fakeWorkerFilesLoadedCapability = createPromiseCapability();
       // In the developer build load worker_loader which in turn loads all the
       // other files and resolves the promise. In production only the
-      // pdf.worker.js file is needed.
+      // pdf_worker.js file is needed.
       var loader = fakeWorkerFilesLoader || function (callback) {
         Util.loadScript(getWorkerSrc(), function () {
           callback(window.pdfjsDistBuildPdfWorker.WorkerMessageHandler);
